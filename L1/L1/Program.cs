@@ -13,9 +13,13 @@ namespace L1
             Money m1 = new Money(10.00, Currency.Franken);
             Money m2 = new Money(20, Currency.Franken);
             
-
             var newMoney = m1 + m2;
-            Console.WriteLine(newMoney.ToString());
+            var newMoney2 = m1 + 1.5;
+            var newMoney3 = 7.5 + m2;
+
+            Console.WriteLine("newMoney: "+ newMoney.ToString());
+            Console.WriteLine("newMoney2: " + newMoney2.ToString());
+            Console.WriteLine("newMoney3: " + newMoney3.ToString());
             Console.ReadKey();
         }
     }
@@ -36,15 +40,33 @@ namespace L1
 
         public static Money operator +(Money left, Money right)
         {
-            // FailFast
             AssertCurrencyIsEqual(left,right);
             return new Money(left.Value + right.Value, left.Currency);
+        }
+
+        public static Money operator +(Money left, double right)
+        {
+            return new Money(left.Value + right, left.Currency);
+        }
+
+        public static Money operator +(double left, Money right)
+        {
+            return new Money(left + right.Value, right.Currency);
         }
 
         public static Money operator -(Money left, Money right)
         {
             AssertCurrencyIsEqual(left, right);
             return new Money(left.Value - right.Value, left.Currency);
+        }
+        public static Money operator -(Money left, double right)
+        {
+            return new Money(left.Value - right, left.Currency);
+        }
+
+        public static Money operator -(double left, Money right)
+        {
+            return new Money(left - right.Value, right.Currency);
         }
 
         public static Money operator *(Money left, Money right)
