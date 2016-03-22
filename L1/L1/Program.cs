@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace L1
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Money m1 = new Money(10, Currency.Franken);
             Money m2 = new Money(20, Currency.Franken);
             var newMoney = m1 + m2;
-            Console.Write(newMoney.Amount);
-            Console.Write(" " + newMoney.Currency.ToString());
+            Console.WriteLine(newMoney.ToString());
             Console.ReadKey();
         }
     }
@@ -33,7 +32,16 @@ namespace L1
 
         public static Money operator +(Money m1, Money m2)
         {
+            // FailFast
+            if (m1.Currency != m2.Currency)
+                throw new InvalidOperationException("Die beiden Money-Objekte haben nicht dieselbe Währung.");
+
             return new Money(m1.Amount + m2.Amount, m1.Currency);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0:F2} {1}", Amount, Currency.ToString());
         }
 
     }
