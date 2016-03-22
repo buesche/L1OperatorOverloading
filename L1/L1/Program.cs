@@ -118,6 +118,16 @@ namespace L1
             return String.Format("{0:F2} {1}", Round(Value), Currency.ToString());
         }
 
+        public override bool Equals(object obj)
+        {
+            if(obj.GetType() != typeof(Money))
+            {
+                if ((obj as Money).Currency == Currency && (obj as Money).Value == Value)
+                    return true;
+            }
+            return false;
+        }
+
         private static double Round(double value)
         {
             //Kaufmännisches Runden auf 2 Nachkommastellen
