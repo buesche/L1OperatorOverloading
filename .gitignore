@@ -47,4 +47,5 @@ Temporary Items
 .apdisk
 
 # Money Projekt
-L1/L1/bin/**
+bin
+obj
