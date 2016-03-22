@@ -12,8 +12,9 @@ namespace L1
         {
             Money m1 = new Money(10, Currency.Franken);
             Money m2 = new Money(20, Currency.Franken);
-            Console.Write((m1 + m2).Amount);
-            Console.Write(" " + (m1 + m2).Currency.ToString());
+            var newMoney = m1 + m2;
+            Console.Write(newMoney.Amount);
+            Console.Write(" " + newMoney.Currency.ToString());
             Console.ReadKey();
         }
     }
