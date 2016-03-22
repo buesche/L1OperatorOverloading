@@ -10,8 +10,10 @@ namespace L1
     {
         static void Main(string[] args)
         {
-            Money m1 = new Money(10, Currency.Franken);
+            Money m1 = new Money(10.00, Currency.Franken);
             Money m2 = new Money(20, Currency.Franken);
+            
+
             var newMoney = m1 + m2;
             Console.WriteLine(newMoney.ToString());
             Console.ReadKey();
@@ -20,28 +22,84 @@ namespace L1
 
     public class Money
     {
-        public double Amount { get; set; }
+        public double Value { get; set; }
 
         public Currency Currency { get; set; }
 
         public Money(double amount, Currency currency)
         {
-            Amount = amount;
+            Value = amount;
             Currency = currency;
         }
 
-        public static Money operator +(Money m1, Money m2)
+        #region Operator Overload
+
+        public static Money operator +(Money left, Money right)
         {
             // FailFast
-            if (m1.Currency != m2.Currency)
-                throw new InvalidOperationException("Die beiden Money-Objekte haben nicht dieselbe Währung.");
+            AssertCurrencyIsEqual(left,right);
+            return new Money(left.Value + right.Value, left.Currency);
+        }
 
-            return new Money(m1.Amount + m2.Amount, m1.Currency);
+        public static Money operator -(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return new Money(left.Value - right.Value, left.Currency);
+        }
+
+        public static Money operator *(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return new Money(left.Value * right.Value, left.Currency);
+        }
+
+        public static Money operator /(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return new Money(left.Value / right.Value, left.Currency);
+        }
+
+        public static bool operator ==(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return left.Value == right.Value;
+        }
+
+        public static bool operator !=(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return left.Value != right.Value;
+        }
+
+        public static bool operator <(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return left.Value < right.Value;
+        }
+
+        public static bool operator >(Money left, Money right)
+        {
+            AssertCurrencyIsEqual(left, right);
+            return left.Value > right.Value;
+        }
+
+        #endregion
+
+        private static void AssertCurrencyIsEqual(Money left, Money right)
+        {
+            if (left.Currency != right.Currency)
+                throw new InvalidOperationException("Die beiden Money-Objekte haben nicht dieselbe Währung.");
         }
 
         public override string ToString()
         {
-            return String.Format("{0:F2} {1}", Amount, Currency.ToString());
+            return String.Format("{0:F2} {1}", Round(Value), Currency.ToString());
+        }
+
+        private static double Round(double value)
+        {
+            //Kaufmännisches Runden auf 2 Nachkommastellen
+            return Math.Round(value, 2, MidpointRounding.AwayFromZero);
         }
 
     }
