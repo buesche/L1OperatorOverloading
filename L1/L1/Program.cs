@@ -17,6 +17,9 @@ namespace L1
             var newMoney2 = m1 + 1.5;
             var newMoney3 = 7.5 + m2;
 
+            //Explizit Convert Money to double
+            double moneyValue = (double)newMoney;
+
             Console.WriteLine("newMoney: "+ newMoney.ToString());
             Console.WriteLine("newMoney2: " + newMoney2.ToString());
             Console.WriteLine("newMoney3: " + newMoney3.ToString());
@@ -34,6 +37,12 @@ namespace L1
         {
             Value = amount;
             Currency = currency;
+        }
+
+        public Money()
+        {
+            Value = 0;
+            Currency = Currency.Franken;
         }
 
         #region Operator Overload
@@ -105,12 +114,26 @@ namespace L1
             return left.Value > right.Value;
         }
 
+        //public static implicit operator double(Money m)
+        //{
+        //    //implizit convert Money to double
+        //    // Careful: We are loosing data...
+        //    return m.Value;
+        //}
+
+        public static explicit operator double(Money m)
+        {
+            // explizit convert Money to double
+            // Careful: We are loosing data...
+            return m.Value;
+        }
+
         #endregion
 
         private static void AssertCurrencyIsEqual(Money left, Money right)
         {
             if (left.Currency != right.Currency)
-                throw new InvalidOperationException("Die beiden Money-Objekte haben nicht dieselbe Währung.");
+                throw new InvalidOperationException("Die beiden Money-Objekte haben nicht die selbe Währung.");
         }
 
         public override string ToString()
@@ -120,7 +143,7 @@ namespace L1
 
         public override bool Equals(object obj)
         {
-            if(obj.GetType() != typeof(Money))
+            if(obj.GetType() == typeof(Money))
             {
                 if ((obj as Money).Currency == Currency && (obj as Money).Value == Value)
                     return true;
