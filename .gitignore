@@ -49,3 +49,5 @@ Temporary Items
 # Money Projekt
 bin
 obj
+*.suo
+packages
