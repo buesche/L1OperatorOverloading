@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace L1
 {
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            Money m1 = new Money(10.00, Currency.Franken);
-            Money m2 = new Money(20, Currency.Franken);
+    //public class Program
+    //{
+    //    static void Main(string[] args)
+    //    {
+    //        Money m1 = new Money(10.00, Currency.Franken);
+    //        Money m2 = new Money(20, Currency.Franken);
             
-            var newMoney = m1 + m2;
-            var newMoney2 = m1 + 1.5;
-            var newMoney3 = 7.5 + m2;
+    //        var newMoney = m1 + m2;
+    //        var newMoney2 = m1 + 1.5;
+    //        var newMoney3 = 7.5 + m2;
 
-            //Explizit Convert Money to double
-            double moneyValue = (double)newMoney;
+    //        //Explizit Convert Money to double
+    //        double moneyValue = (double)newMoney;
 
-            Console.WriteLine("newMoney: "+ newMoney.ToString());
-            Console.WriteLine("newMoney2: " + newMoney2.ToString());
-            Console.WriteLine("newMoney3: " + newMoney3.ToString());
-            Console.ReadKey();
-        }
-    }
+    //        Console.WriteLine("newMoney: "+ newMoney.ToString());
+    //        Console.WriteLine("newMoney2: " + newMoney2.ToString());
+    //        Console.WriteLine("newMoney3: " + newMoney3.ToString());
+    //        Console.ReadKey();
+    //    }
+    //}
 
     public class Money
     {
