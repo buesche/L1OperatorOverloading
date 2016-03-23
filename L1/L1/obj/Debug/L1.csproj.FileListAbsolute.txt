@@ -1,6 +1,0 @@
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\bin\Debug\L1.exe.config
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\bin\Debug\L1.exe
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\bin\Debug\L1.pdb
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\obj\Debug\L1.csprojResolveAssemblyReference.cache
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\obj\Debug\L1.exe
-\\svwfi001\dfrhd$\EFABBUC\APdata\Client\Desktop\GitHub\L1OperatorOverloading\L1\L1\obj\Debug\L1.pdb
